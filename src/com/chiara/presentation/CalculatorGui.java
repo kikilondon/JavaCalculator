@@ -30,11 +30,11 @@ public CalculatorGui() {
 	Font myFont = new Font("Roboto",Font.BOLD,30);
 	frame = new JFrame("Calculator");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(520, 600);
+    frame.setSize(500, 580);
     frame.setLayout(null);
 
     textfield = new JTextField();
-    textfield.setBounds(50, 25, 400, 50);
+    textfield.setBounds(50, 35, 400, 50);
     textfield.setFont(new Font("Roboto", Font.BOLD, 30));
     textfield.setEditable(false);
     
