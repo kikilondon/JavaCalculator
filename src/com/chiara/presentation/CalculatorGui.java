@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -125,6 +126,7 @@ public void actionPerformed(ActionEvent e) {
 	    }
 	    if(e.getSource() == addButton || e.getSource() == subButton || 
 	       e.getSource() == mulButton || e.getSource() == divButton) {
+	    
 	        // Set num1 to the current value in the text field
 	        num1 = Double.parseDouble(textfield.getText());
 	        // Set the operator based on the button clicked
@@ -139,12 +141,16 @@ public void actionPerformed(ActionEvent e) {
 	        }
 	        // Clear the text field for next input
 	       textfield.setText("");
+	    	
 	    }
+	      
 
 	    if(e.getSource() == equButton) {
+	    	  try {
 	        // Get num2 from the current value in the text field
 	        num2 = Double.parseDouble(textfield.getText());
 	        // Calculate the result using CalculatorLogic
+	      
 	        double result = calculatorLogic.calculate(num1, num2, operator);
 	        // Check if the result is an integer
 	        if (result % 1 == 0) {
@@ -152,6 +158,11 @@ public void actionPerformed(ActionEvent e) {
 	            textfield.setText(String.valueOf((int) result));
 	        } else {
 	            textfield.setText(String.valueOf(result));
+	           } 
+	        } catch (IllegalArgumentException ex) {
+	           //if the user click on the equal button without selecting the first number
+	        	//Handle the exception by displaying a pop up 
+	           JOptionPane.showMessageDialog(frame, "Invalid operation!", "Error", JOptionPane.ERROR_MESSAGE);
 	       }
 	      
 	    }
@@ -174,5 +185,5 @@ public void actionPerformed(ActionEvent e) {
 	 }
 	
 
-	
 }
+//numberFormatException
