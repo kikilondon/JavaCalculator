@@ -1,0 +1,28 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# IntelliJ IDEA files
+.idea/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# NetBeans files
+nbproject/
+
+# Maven build directory
+target/
+
+# Gradle build directory
+build/
+
+# macOS .DS_Store files
+.DS_Store
+
+# Compiled binary files
+bin/
