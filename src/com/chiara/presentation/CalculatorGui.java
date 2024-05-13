@@ -112,8 +112,7 @@ public CalculatorGui() {
 @Override
 public void actionPerformed(ActionEvent e) {
 	 calculatorLogic = new CalculatorLogic();
-		//when the user click on a button, the button clicked display the text on the frame
-		for(int i=0;i<10;i++) {
+	    for(int i=0;i<10;i++) {
 			if(e.getSource() == numberButtons[i]) {
 				//get text and turn the data value given in string
 				textfield.setText(textfield.getText().concat(String.valueOf(i)));
@@ -122,11 +121,21 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 		if(e.getSource() == decButton) {
+			
 	        textfield.setText(textfield.getText().concat("."));
-	    }
+			
+			 }
+	        
+	    
 	    if(e.getSource() == addButton || e.getSource() == subButton || 
 	       e.getSource() == mulButton || e.getSource() == divButton) {
+	    	if (textfield.getText().isEmpty()) {
+	            // promp the user to enter a number  
+	            JOptionPane.showMessageDialog(frame, "Please enter a number first!", "Error", JOptionPane.ERROR_MESSAGE);
+	            return; // Exit the method to prevent further execution
+	        }
 	    
+	    	   try {
 	        // Set num1 to the current value in the text field
 	        num1 = Double.parseDouble(textfield.getText());
 	        // Set the operator based on the button clicked
@@ -140,7 +149,12 @@ public void actionPerformed(ActionEvent e) {
 	            operator = '/';
 	        }
 	        // Clear the text field for next input
-	       textfield.setText("");
+	        textfield.setText("");
+	    	   }catch (NumberFormatException ex) {
+	    		 //if the user click on one of the operation buttons without selecting the first number
+		        //Handle the exception by displaying a pop up 
+	           JOptionPane.showMessageDialog(frame, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+	       }
 	    	
 	    }
 	      
@@ -169,9 +183,19 @@ public void actionPerformed(ActionEvent e) {
 	    
 	    //clean entire number
 	    if(e.getSource() == clrButton) {
+	    	if (textfield.getText().isEmpty()) {
+	            // promp the user to enter a number  
+	            JOptionPane.showMessageDialog(frame,"Error");
+	            return; // Exit the method to prevent further execution
+	        }
 	    	textfield.setText("");
 	    }
 	    if (e.getSource() == delButton) {
+	    	if (textfield.getText().isEmpty()) {
+	    		JOptionPane.showMessageDialog(frame,"Error");
+	            return; // Exit the method to prevent further execution
+	        }
+	    	
 	    	//store the string displayed in a temporary string
 	        String stringTemp = textfield.getText();
 	        if (stringTemp.length() > 0) {
