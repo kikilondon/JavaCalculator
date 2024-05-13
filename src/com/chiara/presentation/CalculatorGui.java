@@ -121,17 +121,18 @@ public void actionPerformed(ActionEvent e) {
 		}
 		
 		if(e.getSource() == decButton) {
-			
-	        textfield.setText(textfield.getText().concat("."));
-			
-			 }
+			if(textfield.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(frame, "Please enter a number", "Error", JOptionPane.ERROR_MESSAGE);
+	            return; // Exit the method to prevent further execution
+	        }textfield.setText(textfield.getText().concat("."));
+		}
 	        
 	    
 	    if(e.getSource() == addButton || e.getSource() == subButton || 
 	       e.getSource() == mulButton || e.getSource() == divButton) {
 	    	if (textfield.getText().isEmpty()) {
 	            // promp the user to enter a number  
-	            JOptionPane.showMessageDialog(frame, "Please enter a number first!", "Error", JOptionPane.ERROR_MESSAGE);
+	            JOptionPane.showMessageDialog(frame, "Please enter a number", "Error", JOptionPane.ERROR_MESSAGE);
 	            return; // Exit the method to prevent further execution
 	        }
 	    
@@ -210,4 +211,3 @@ public void actionPerformed(ActionEvent e) {
 	
 
 }
-//numberFormatException
