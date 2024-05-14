@@ -14,6 +14,7 @@ public class CalculatorLogic {
                     return num1 / num2;
                 } else {
                     throw new ArithmeticException("Division by zero!");
+                    
                 }
             default:
                 throw new IllegalArgumentException("Invalid operator");
