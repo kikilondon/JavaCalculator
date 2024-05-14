@@ -11,10 +11,7 @@ public class CalculatorLogic {
                 return num1 * num2;
             case '/':
                 if (num2 != 0) {
-                    return num1 / num2;
-                } else {
-                    throw new ArithmeticException("Division by zero!");
-                    
+                    return num1 / num2;                  
                 }
             default:
                 throw new IllegalArgumentException("Invalid operator");

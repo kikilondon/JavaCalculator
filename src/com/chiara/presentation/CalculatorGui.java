@@ -158,29 +158,44 @@ public void actionPerformed(ActionEvent e) {
 	       }
 	    	
 	    }
-	      
+	
+
+	       
 
 	    if(e.getSource() == equButton) {
-	    	  try {
-	        // Get num2 from the current value in the text field
-	        num2 = Double.parseDouble(textfield.getText());
-	        // Calculate the result using CalculatorLogic
-	      
-	        double result = calculatorLogic.calculate(num1, num2, operator);
-	        // Check if the result is an integer
-	        if (result % 1 == 0) {
-	            // If it's an integer, convert it to int and display
-	            textfield.setText(String.valueOf((int) result));
-	        } else {
-	            textfield.setText(String.valueOf(result));
-	           } 
-	        } catch (IllegalArgumentException ex) {
-	           //if the user click on the equal button without selecting the first number
-	        	//Handle the exception by displaying a pop up 
-	           JOptionPane.showMessageDialog(frame, "Invalid operation!", "Error", JOptionPane.ERROR_MESSAGE);
-	       }
-	      
-	    }
+	    	   if (textfield.getText().isEmpty()) {
+		            // prompt the user to enter a number
+		            JOptionPane.showMessageDialog(frame, "Please enter a number", "Error", JOptionPane.ERROR_MESSAGE);
+		            return; // Exit the method to prevent further execution
+		        }
+	    	   try {
+		            // Set num2 to the current value in the text field
+		            double num2 = Double.parseDouble(textfield.getText());
+		            //if the user divide by zero
+		            if (operator == '/' && num2 == 0) {
+		            	//throw a message 
+		                throw new ArithmeticException("Division by zero");
+		            }
+		            // otherwise Perform the calculation
+		            double result = calculatorLogic.calculate(num1, num2, operator);
+		            // if the result is an integer 
+		            if (result % 1 == 0) {
+		          //display it without decimals
+		            textfield.setText(String.valueOf((int) result));
+		        } else
+		            // Display the result as double(15 dec) or less
+		           textfield.setText(Double.toString(result));
+		        } catch (NumberFormatException ex) {
+		            // Handle the exception by displaying a pop-up
+		            JOptionPane.showMessageDialog(frame, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
+		        } catch (ArithmeticException ex) {
+		            // Handle the exception by displaying a pop-up for division by 0
+		            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		      
+	    	   
+	
 	    
 	    //clean entire number
 	    if(e.getSource() == clrButton) {
