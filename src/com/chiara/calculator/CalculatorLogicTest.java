@@ -19,7 +19,6 @@ class CalculatorLogicTest {
 
 	@Test
 	void testSubtraction() {
-		//System.out.println("This test ran");
 		CalculatorLogic calculatorLogic = new CalculatorLogic();
 		double result = calculatorLogic.calculate(7, 2, '-');
 		Assertions.assertEquals(5, result);
@@ -29,7 +28,6 @@ class CalculatorLogicTest {
 
 	@Test
 	void testMultiplication() {
-		//System.out.println("This test ran");
 		CalculatorLogic calculatorLogic = new CalculatorLogic();
 		double result = calculatorLogic.calculate(7, 2, '*');
 		Assertions.assertEquals(14, result);
@@ -39,7 +37,6 @@ class CalculatorLogicTest {
 
 	@Test
 	void testDivision() {
-		//System.out.println("This test ran");
 		CalculatorLogic calculatorLogic = new CalculatorLogic();
 		double result = calculatorLogic.calculate(10, 2, '/');
 		Assertions.assertEquals(5, result);
@@ -66,7 +63,6 @@ class CalculatorLogicTest {
 	        calculator.calculate(6, 3, '.'); 
 	        Assertions.fail("Expected IllegalArgumentException was not thrown");
 	    } catch (IllegalArgumentException e) {
-	        // Expected exception thrown
 	        Assertions.assertEquals("Invalid operator", e.getMessage());
 	    }
 	}
